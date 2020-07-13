@@ -1,3 +1,3 @@
 Color Bands 
 
-![] 
+![](05D02E0E-C69F-40EC-A0A8-DA23EE9DC23C_1_201_a.jpeg)
