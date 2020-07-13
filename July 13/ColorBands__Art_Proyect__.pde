@@ -1,5 +1,6 @@
  void setup(){
- size( 1000,500); 
+ size( 1000,500);
+ frameRate(10);
  }
  int BandMov = -150;
  float  RandomColor1 = random(100,255);
@@ -125,6 +126,6 @@ rotate( radians( 10));
   pop(); 
  
   // Band movement
-  BandMov =  BandMov + 25; 
+  BandMov =  BandMov + 30; 
 
   }
