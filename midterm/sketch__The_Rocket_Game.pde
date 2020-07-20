@@ -7,10 +7,12 @@ float SpaceshipY = 600;
 float CrashSize = 10; 
 //Part of collition system that couldn't make. 
 //you lost message
-float messagePositionX = -650;
-float messagePositionY= - 400;
+float messagePositionX2 = -650;
+float messagePositionY2= - 400;
+float messagePositionX1 = 650;
+float messagePositionY1= - 0;
 String message2 = "YOU LOST";
-String message1 = "Click Anywhere to Start";
+String message1 = "Get Prepared";
 //Spaceship body
 void drawSpaceship() {
   push();
@@ -123,9 +125,9 @@ class AsteroidsConstruction {
 
 
       CrashSize += 200; 
-      messagePositionX += 1300;
-      messagePositionY += 800;
-      CrashSound.play(1,0.7);
+      messagePositionX2 += 1300;
+      messagePositionY2 += 800;
+      CrashSound.play(1, 0.7);
 
       noLoop();
     }
@@ -145,7 +147,7 @@ class StarsConstruction {
   void StarSpeed() {
     StarY = StarY + 5 ;
   }
-// stars desing 
+  // stars desing 
   void drawStars() {
     push(); 
     scale(1);
@@ -163,7 +165,7 @@ class StarsConstruction {
 
 
 //Asteroid Array
-AsteroidsConstruction[] AsteroidArray = new AsteroidsConstruction[80];
+AsteroidsConstruction[] AsteroidArray = new AsteroidsConstruction[800];
 //Stars Array
 StarsConstruction[] StarArray = new StarsConstruction[300];
 
@@ -190,11 +192,13 @@ void setup() {
 
   //Asteroid Array
   for (int i=0; i < AsteroidArray.length; i++) {
-    AsteroidArray[i] = new AsteroidsConstruction(random(0, 1300), random(-4000, 0 ), 110, 110 );
+    AsteroidArray[i] = new AsteroidsConstruction(random(0, 1300), random(-40000, -400 ), 110, 110 );
     if (i >= AsteroidArray.length) {
       i = 0;
     }
   }
+  //Asteroid Array
+ 
   // Stars Array
   for (int a=0; a < StarArray.length; a++) {
     StarArray[a] = new StarsConstruction( random(0, 1300), random(-10000, 800 ));
@@ -216,15 +220,20 @@ void draw() {
 
   //Asteroid funtion
   for (int i=0; i < AsteroidArray.length; i++) { 
-     AsteroidArray[i].drawAsteroid();
-  AsteroidArray[i].AsteroidSpeed();
-  AsteroidArray[i].CollitionDetection();
+    AsteroidArray[i].drawAsteroid();
+    AsteroidArray[i].AsteroidSpeed();
+    AsteroidArray[i].CollitionDetection();
   }
 
   //Spaceship funtion
-   drawSpaceship();
-//message "You lost"
+
+  drawSpaceship();
+  //message "You lost"
   fill(0, 0, 0);
   textSize(200);
-  text(message2, messagePositionX, messagePositionY);
+  text(message2, messagePositionX2, messagePositionY2);
+  fill(255, 0, 0);
+  textSize(100);
+  text(message1,messagePositionX1, messagePositionY1);
+  messagePositionY1 += 20;
 }
