@@ -1,3 +1,3 @@
-In this circuit,
 
-![](IMG_0324.HEIC)
+
+![](IMG_0324.HEIC);
