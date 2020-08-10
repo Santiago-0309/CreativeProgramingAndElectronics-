@@ -1,0 +1,342 @@
+//Spaceship variables 
+public float SpaceshipX = 500;
+public float SpaceshipY = 600;
+public float CrashSize = 10; 
+// Bullet class Variables (need to be out and public)
+public float Bulletx = SpaceshipX + 114;
+public float Bullety = SpaceshipY + 83;
+public float Bulletr = 15;
+//bulletmovemet
+public float BulletSpeed = 0;
+//Part of collition system that couldn't make. 
+//you lost message
+float messagePositionX2 = -650;
+float messagePositionY2= - 400;
+float messagePositionX1 = 650;
+float messagePositionY1= - 0;
+String message2 = "YOU LOST";
+String message1 = "Get Prepared";
+
+//Spaceship body
+void drawSpaceship() {
+  push();
+  //cuadrado
+  fill(240, 29, 29);
+  //Red little ones
+  square(SpaceshipX + 91, SpaceshipY + 75, 20);
+  square(SpaceshipX + 137, SpaceshipY + 75, 20);
+  fill(9, 48, 232);
+  square(SpaceshipX + 107, SpaceshipY + 62, 20);//***********
+  square(SpaceshipX + 120, SpaceshipY + 62, 20);
+  //blue little ones
+  square(SpaceshipX + 91, SpaceshipY + 86, 12);//********
+  square(SpaceshipX + 137, SpaceshipY + 86, 12);
+  fill(240, 29, 29);
+  //rear ones
+  square(SpaceshipX + 137, SpaceshipY + 109, 12);
+  square(SpaceshipX + 91, SpaceshipY + 109, 12);
+  //front ones
+  square(SpaceshipX + 122, SpaceshipY + 47, 12);
+  square(SpaceshipX + 107, SpaceshipY + 47, 12);
+  //struct
+  square(SpaceshipX + 76, SpaceshipY + 85, 12);
+  square(SpaceshipX + 154, SpaceshipY + 85, 12);
+  //starship lines
+  fill(247, 242, 242);
+  rect(SpaceshipX + 115, SpaceshipY + 94, 90, 5);
+  rect(SpaceshipX + 100, SpaceshipY + 80, 5, 70);
+  rect(SpaceshipX + 115, SpaceshipY + 55, 5, 70);
+  rect(SpaceshipX + 130, SpaceshipY + 80, 5, 70);
+  rect(SpaceshipX + 83, SpaceshipY + 75, 5, 30);
+  rect(SpaceshipX + 147, SpaceshipY + 75, 5, 30);
+  //Propulsor
+  fill(9, 48, 232);
+  circle(SpaceshipX + 114, SpaceshipY + 83, 30);
+  pop();
+} 
+class MBullet {
+
+  void drawBullet() {
+    fill(0, 255, 0);
+    ellipse(Bulletx, Bullety, Bulletr, Bulletr);
+  }
+  void BulletFire() {
+    Bullety += BulletSpeed;
+  }
+}
+
+// Movement of the Spaceship with keyboard 
+void keyPressed() {
+
+  // when Key pressed Bullet moves
+  if (key == 'P' || key == 'p' ) {
+    BulletSpeed = -200;
+  
+    //MovSound.play
+    //(1, 0.3);
+ }
+  
+
+  // constrol bulletposition so it follows the Ship with keyletters 
+  if (key == 'd' || key == 'D' ) {
+    Bulletx += 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (key == 'a' || key == 'A') {
+    Bulletx += -40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (key == 'w' || key =='W') { 
+    Bullety += - 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (key == 's' || key  =='S') { 
+    Bullety +=  40;
+
+    //MovSound.play
+    //(1, 0.3);
+  } 
+
+  // constrol with keyletters 
+  if (key == 'd' || key == 'D' ) {
+    SpaceshipX += 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (key == 'a' || key == 'A') {
+    SpaceshipX += -40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (key == 'w' || key =='W') { 
+    SpaceshipY += - 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (key == 's' || key  =='S') { 
+    SpaceshipY +=  40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+
+  // control Spaceship with key arrows 
+  if (keyCode == RIGHT ) {
+    SpaceshipX += 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (keyCode == LEFT) {
+    SpaceshipX += - 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (keyCode == UP) { 
+    SpaceshipY += - 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+  if (keyCode == DOWN) { 
+    SpaceshipY += 40;
+
+    //MovSound.play
+    //(1, 0.3);
+  }
+}   
+// Spacehship rotation
+
+// class of Asteroids 
+class AsteroidsConstruction {
+
+  float AsteroidX = random(-200, 1300);
+  float AsteroidY = random(-2000, -400);
+  float r = 110;
+  float ScaleSize = 1;
+
+
+  //movemet
+  void AsteroidSpeed() {
+    AsteroidY = AsteroidY + 20 ;
+    if (AsteroidY > height) {
+      AsteroidY = random(-700, 0);
+    }
+  }
+  //serial call response 
+  // asteroid 
+  void drawAsteroid() {
+    push();
+    scale(ScaleSize);
+    stroke(#504040);
+    fill(#504040); 
+    //Asteroid shape
+    ellipse(AsteroidX, AsteroidY, r, r);
+    ellipse(AsteroidX + 20, AsteroidY +30, r-40, r-40);
+    ellipse(AsteroidX- 40, AsteroidY -25, r-40, r-40);
+    ellipse(AsteroidX - 20, AsteroidY +32, r-40, r-40);
+    ellipse(AsteroidX + 30, AsteroidY - 35, r-35, r-35);
+
+    //asteroid craters
+    stroke(#2E2727);
+    fill(#2E2727);
+    ellipse(AsteroidX +7, AsteroidY +6, r-85, r-83);
+    ellipse(AsteroidX +20, AsteroidY +30, r-75, r-71);
+    ellipse(AsteroidX +8, AsteroidY -20, r-70, r-74);
+    ellipse(AsteroidX - 30, AsteroidY -18, r-76, r-80);
+    ellipse(AsteroidX -20, AsteroidY +25, r-78, r-75);
+    ellipse(AsteroidX +40, AsteroidY -30, r-78, r-75);
+    pop();
+  }
+
+  void Miniaturization() {
+    if (dist(Bulletx, Bullety, AsteroidX, AsteroidY)< r) {
+       ScaleSize = 0.1;
+       r = 1;
+    } 
+    if (dist(Bulletx, Bullety, AsteroidX, AsteroidY)< r && AsteroidY > 0){ 
+      r = 110;
+    }
+    if ( Bullety < 0) {
+      Bulletx = SpaceshipX + 114;
+      Bullety = SpaceshipY + 83;
+      BulletSpeed = 0;
+    }
+  }
+  //Tryed to make a collition system but  couldn't makeit.
+  void CollitionDetection() {
+    if (dist(SpaceshipX + 114, SpaceshipY + 83, AsteroidX, AsteroidY) < r) {
+
+
+      CrashSize += 200; 
+      messagePositionX2 += 1300;
+      messagePositionY2 += 800;
+
+      //CrashSound.play
+      //(1, 0.7);
+
+      noLoop();
+    }
+  }
+}
+// class of stars 
+class StarsConstruction {
+
+  float StarX = random(0, 1300);
+  float StarY = random(-500, 800);
+
+
+  //movemet
+  void StarSpeed() {
+    StarY = StarY + 5 ;
+    if (StarY > height) {
+      StarY = random(-700, 0);
+    }
+  }
+  // stars desing 
+  void drawStars() {
+    push(); 
+    scale(1);
+    stroke(#FAFAF7);
+    fill(#FAFAF7); 
+    //Stars shape
+    triangle( StarX, StarY, StarX+3, StarY-10, StarX+6, StarY);  
+    triangle(StarX+3, StarY-3, StarX-7, StarY, StarX+3, StarY+3);
+    triangle(StarX+3, StarY-3, StarX+12, StarY, StarX+3, StarY+3);
+    triangle( StarX, StarY, StarX+3, StarY+10, StarX+6, StarY);  
+    pop();
+  }
+}
+
+
+
+//Asteroid Array
+AsteroidsConstruction[] AsteroidArray = new AsteroidsConstruction[35];
+//Stars Array
+StarsConstruction[] StarArray = new StarsConstruction[100];
+
+
+// for all sound   
+//import processing.sound.*;
+/*SoundFile mainTheme;
+ SoundFile CrashSound;
+ SoundFile MovSound;*/
+MBullet[] BulletArray = new MBullet[1];  
+
+//SETUP
+void setup() {
+  size( 1300, 800 );
+  smooth();
+  rectMode(CENTER);
+  textAlign(CENTER);
+  /*mainTheme = new SoundFile(this, "Main Theme Rocket Game .mp3");
+   MovSound = new SoundFile (this, "movement sound rocket game.mp3");
+   CrashSound = new SoundFile(this, "crash sound  rocket game.mp3");
+   mainTheme.loop(1, 0.5);*/
+
+
+  for (int j=0; j < AsteroidArray.length; j++) { 
+    AsteroidArray[j] = new AsteroidsConstruction();
+  } 
+
+  for (int j=0; j <  BulletArray.length; j++) { 
+    BulletArray[j] = new MBullet();
+  } 
+
+
+
+  //Asteroid Array
+
+
+  // Stars Array
+  for (int a=0; a < StarArray.length; a++) {
+    StarArray[a] = new StarsConstruction();
+    if (a >= StarArray.length) {
+      a = 0;
+    }
+  }
+}
+
+
+
+void draw() { 
+  background(#120C55);
+  //Stars funtion
+  for (int a=0; a < StarArray.length; a++) { 
+    StarArray[a].drawStars();
+    StarArray[a].StarSpeed();
+  }
+
+  //Asteroid funtion
+  for (int i=0; i < AsteroidArray.length; i++) { 
+    AsteroidArray[i].drawAsteroid();
+    AsteroidArray[i].AsteroidSpeed();
+    AsteroidArray[i].CollitionDetection();
+    AsteroidArray[i].Miniaturization();
+  }
+  for (int i = 0; i < BulletArray.length; i++) {
+    BulletArray[i].drawBullet();
+    BulletArray[i].BulletFire();
+  }
+  //Spaceship funtion
+
+  drawSpaceship();
+  //message "You lost"
+  fill(0, 0, 0);
+  textSize(200);
+  text(message2, messagePositionX2, messagePositionY2);
+  fill(255, 0, 0);
+  textSize(100);
+  text(message1, messagePositionX1, messagePositionY1);
+  messagePositionY1 += 20;
+}
