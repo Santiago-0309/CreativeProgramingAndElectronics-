@@ -13,4 +13,6 @@ Also a big detail is that the music of the videogame is made by my own.
 To make it I used a program called Logic Pro, and used made the melody based on a blues scale with some extra details to make it more thrilling like.
 Had some issued with the music in the program but decided to replace some of the effects that I made with Logic with ligther ones from the processing library. 
 
+Link to youtubr video of the game: https://youtu.be/ZGC7-lUpM6Q
+
 ![](C33F312E-3430-437D-B2D8-AF228A2290AB.png);
